@@ -7,6 +7,8 @@
 </div>
 <h2>All the Tasks: </h2>
 
+<button (click)="tasksOnClick()">Click to get all tasks</button>
+
 <div *ngFor="let x of tasks" >
   <p *ngIf="x.title">
     {{x.title}} - {{x.description}}
@@ -14,4 +16,7 @@
 </div>
 
 <h2>The Task: </h2>
-<p *ngIf="task[0]">{{task[0].title}} - {{task[0].description}}</p>
+<input (keyup)="taskOnClick($event)">
+<div *ngFor="let x of task" >
+    <p *ngIf="x">{{x.title}} - {{x.description}}</p>
+</div>
