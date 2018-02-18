@@ -20,3 +20,14 @@
 <div *ngFor="let x of task" >
     <p *ngIf="x">{{x.title}} - {{x.description}}</p>
 </div>
+
+<form (submit) = "onSubmit()" class="postForm">
+  <p>{{newTask | json}}</p>
+  <label>Task title:
+    <input type="text" name="newTask.title" [(ngModel)] = "newTask.title" />
+  </label>
+  <label>Task description:
+    <input type="text" name="newTask.description" [(ngModel)] = "newTask.description" />
+  </label>
+  <input type="submit" value="Create Task" />
+</form>

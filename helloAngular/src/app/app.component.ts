@@ -11,12 +11,12 @@ export class AppComponent implements OnInit {
   tasks = [];
   task = [];
   id = '';
+  newTask: any;
 
   constructor(private _httpService: HttpService){}
-  // ngOnInit(){
-  //   this.getTasksFromService()
-  //   this.getTaskFromService()
-  // }
+   ngOnInit(){
+      this.newTask = {title: "", description: ""}
+   }
   tasksOnClick(){
     let observable = this._httpService.getTasks()
     observable.subscribe(data => {
@@ -35,5 +35,12 @@ export class AppComponent implements OnInit {
       console.log("Got our task!", this.task)
     })
   }
+  onSubmit(){
+    let observable = this._httpService.addTask(this.newTask);
+    observable.subscribe(data => {
+      console.log("Got data from post back", data);
+      this.newTask = {title: "", description: ""}
+    })
 
+  }
 }
