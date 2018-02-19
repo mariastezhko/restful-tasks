@@ -37,7 +37,25 @@ export class AppComponent implements OnInit {
       console.log("Got our task!", this.task)
     })
   }
+  // editOnClick(task_id){
+  //   console.log("Task we need to edit", task_id);
+  //
+  //   this.editTask = [];
+  //   let observable = this._httpService.getTask(task_id)
+  //   observable.subscribe(data => {
+  //     this.editTask = data['task'];
+  //     console.log("Task to edit", this.editTask, "Task title", this.editTask[0].title);
+  //     this.showEditForm = true;
+  //   })
+  // }
+  editOnClick(task){
+    console.log("Task we need to edit", task._id);
 
+
+      console.log("Task to edit", task, "Task title", task.title);
+      task.showEditForm = true;
+
+  }
   onSubmit(){
     let observable = this._httpService.addTask(this.newTask);
     observable.subscribe(data => {
@@ -51,5 +69,12 @@ export class AppComponent implements OnInit {
       console.log("Got data from post back", data);
     })
   }
-  
+  onEdit(editTask){
+    editTask.showEditForm = false;
+    console.log("Edit the task", editTask._id)
+    let observable = this._httpService.editTask(editTask);
+    observable.subscribe(data => {
+      console.log("Got data from post back", data);
+    })
+  }
 }

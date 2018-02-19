@@ -16,11 +16,23 @@
   <form (submit) = "onDelete(x._id)" class="postForm">
       <input type="submit" value="DELETE" />
   </form>
-  <form (submit) = "editOnClick(x._id)" class="postForm">
+  <form (submit) = "editOnClick(x)" class="postForm">
       <input type="submit" value="EDIT" />
   </form>
-
+  <div *ngIf="x.showEditForm">
+    <form (submit) = "onEdit(x)" class="postForm">
+      {{x.title}}
+      <label>Title:
+        <input type="text" name="editTask.title" [(ngModel)] = "x.title" />
+      </label>
+      <label>Description:
+        <input type="text" name="editTask.description" [(ngModel)] = "x.description" />
+      </label>
+      <input type="submit" value="EDIT" />
+    </form>
+  </div>
 </div>
+
 
 
 <h2>The Task: </h2>
