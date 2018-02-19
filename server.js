@@ -68,7 +68,7 @@ app.post('/tasks/', function(req, res) {
         res.json({message: "Error", error: err});
       } else {
         console.log('successfully added a task!');
-        res.json(task)
+        res.json({message: "Success", task: task})
         //res.redirect('/');
       }
     })
@@ -104,7 +104,7 @@ app.put('/tasks/:id', function(req, res) {
 })
 
 app.delete('/tasks/:id', function(req, res) {
-    //console.log("POST DATA", req.body);
+    console.log("trying to delete");
     let id = req.params.id;
     Task.remove({_id: id}, function(err) {
       if (err){

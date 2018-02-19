@@ -13,12 +13,21 @@
   <p *ngIf="x.title">
     {{x.title}} - {{x.description}}
   </p>
+  <form (submit) = "onDelete(x._id)" class="postForm">
+      <input type="submit" value="DELETE" />
+  </form>
+  <form (submit) = "editOnClick(x._id)" class="postForm">
+      <input type="submit" value="EDIT" />
+  </form>
+
 </div>
+
 
 <h2>The Task: </h2>
 <input (keyup)="taskOnClick($event)">
 <div *ngFor="let x of task" >
     <p *ngIf="x">{{x.title}} - {{x.description}}</p>
+
 </div>
 
 <form (submit) = "onSubmit()" class="postForm">

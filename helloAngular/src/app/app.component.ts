@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   task = [];
   id = '';
   newTask: any;
+  editTask = [];
+  showEditForm = false;
 
   constructor(private _httpService: HttpService){}
    ngOnInit(){
@@ -35,12 +37,19 @@ export class AppComponent implements OnInit {
       console.log("Got our task!", this.task)
     })
   }
+
   onSubmit(){
     let observable = this._httpService.addTask(this.newTask);
     observable.subscribe(data => {
       console.log("Got data from post back", data);
       this.newTask = {title: "", description: ""}
     })
-
   }
+  onDelete(task_id){
+    let observable = this._httpService.deleteTask(task_id);
+    observable.subscribe(data => {
+      console.log("Got data from post back", data);
+    })
+  }
+  
 }
